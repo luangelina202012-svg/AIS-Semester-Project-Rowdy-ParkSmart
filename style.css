@@ -1,6 +1,6 @@
 body {
     font-family: Serif;
-    background-color: #191970;
+    background-color: #FFFAFA;
     margin: 0;
     padding: 30px;
 }
@@ -11,4 +11,22 @@ h1 {
 
 h2 {
     color: orange;
+}
+
+.parking-card {
+    background-color: #F5F5F5;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.available {
+    color: green;
+}
+
+.full {
+    color: red;
+}
+
+selector {
+    property: value;
 }
