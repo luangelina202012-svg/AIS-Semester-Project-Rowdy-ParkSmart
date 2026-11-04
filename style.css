@@ -13,10 +13,8 @@ h2 {
     color: orange;
 }
 
-<<<<<<< HEAD
 h3{
     color : white;
-=======
 .parking-card {
     background-color: #F5F5F5;
     border: 1px solid #ccc;
@@ -33,5 +31,4 @@ h3{
 
 selector {
     property: value;
->>>>>>> 0c23f91fb0469042664f1c001a473e1414ddc972
 }
