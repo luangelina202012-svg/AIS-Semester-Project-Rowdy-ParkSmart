@@ -1,4 +1,4 @@
-/* ParkRunner — UTSA Main Campus surface-parking prototype.
+/* Rowdy ParkSmart — UTSA Main Campus surface-parking prototype.
  * Lot names: official UTSA Main Campus map and parking page (checked Nov. 9, 2026).
  * https://www.utsa.edu/campusservices/docs/Park-Trans-Map_Main-Campus.pdf
  * https://www.utsa.edu/campusservices/parking/main-campus-parking.html
@@ -490,7 +490,7 @@
         ui = Object.fromEntries(ids.map(id => [id, document.getElementById(id)]));
         const missing = ids.filter(id => !ui[id]);
         if (missing.length) {
-            console.error(`ParkRunner: missing HTML elements: ${missing.join(', ')}`);
+            console.error(`Rowdy ParkSmart: missing HTML elements: ${missing.join(', ')}`);
             return;
         }
 
@@ -511,7 +511,7 @@
         const status = document.getElementById('connectionStatus');
         if (status) {
             status.textContent = 'Local demo · 26 surface lots + University Oaks grouped · Simulated counts';
-            status.style.background = '#e9f8f0';
+            status.style.background = '#eef1fa';
         }
 
         ui.search.addEventListener('input', renderLots);

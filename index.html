@@ -3,22 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="#092b47">
+    <meta name="theme-color" content="#0b1541">
 
-    <title>ParkRunner | UTSA Parking Availability</title>
+    <title>Rowdy ParkSmart | UTSA Parking Availability</title>
 
+    <link rel="icon" href="rowdy-logo.png" type="image/png">
     <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
     <noscript>Please enable JavaScript to display simulated parking availability.</noscript>
-    <p id="connectionStatus" role="status" class="connection-status">Local parking simulation · No server required</p>
     <header class="topbar">
       <div class="brand">
-        <div class="mark">P<span>↗</span></div>
+        <img class="brand-logo" src="rowdy-logo.png" alt="Rowdy ParkSmart logo" width="60" height="60">
 
         <div>
-          <strong>ParkRunner</strong>
+          <strong>Rowdy ParkSmart</strong>
           <small>UTSA MAIN CAMPUS</small>
         </div>
       </div>
@@ -38,9 +38,9 @@
       </div>
     </header>
 
-    <main>
       <section class="hero" id="overview">
-        <div>
+        <div class="hero-inner">
+        <div class="hero-copy">
           <div class="eyebrow">
             ROADRUNNERS PARK SMARTER
             <span class="star">✦</span>
@@ -52,7 +52,7 @@
           </h1>
 
           <p>
-            Explore estimated parking availability across UTSA's Main Campus,
+            Explore simulated parking availability across UTSA's Main Campus,
             all in one place. Waste less time. Find your nest!
           </p>
 
@@ -65,17 +65,14 @@
           </div>
         </div>
 
-        <div class="hero-art" aria-hidden="true">
-          <div class="ring ring1"></div>
-          <div class="ring ring2"></div>
-          <div class="parking-sign">P</div>
-          <div class="road road1"></div>
-          <div class="road road2"></div>
-          <div class="car">🚙</div>
-          <div class="floating">✦ SPOTS AHEAD</div>
+        <div class="hero-logo-panel">
+          <img class="hero-logo" src="rowdy-logo.png" alt="Rowdy ParkSmart — parking made smarter" width="2000" height="2000" fetchpriority="high">
+        </div>
         </div>
       </section>
 
+    <main>
+    <p id="connectionStatus" role="status" class="connection-status">Local parking simulation · No server required</p>
       <section class="notice" role="status">
         <span>ⓘ</span>
 
@@ -299,10 +296,10 @@
 
     <footer>
       <div class="brand footer-brand">
-        <div class="mark">P<span>↗</span></div>
+        <img class="brand-logo" src="rowdy-logo.png" alt="Rowdy ParkSmart logo" width="60" height="60">
 
         <div>
-          <strong>ParkRunner</strong>
+          <strong>Rowdy ParkSmart</strong>
           <small>STUDENT PROJECT PROTOTYPE</small>
         </div>
       </div>

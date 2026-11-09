@@ -1,9 +1,9 @@
 
 :root {
-  --navy: #0b2b45;
-  --deep: #092238;
-  --orange: #f36b21;
-  --cream: #fbfaf6;
+  --navy: #0b1541;
+  --deep: #0b1541;
+  --orange: #ff751f;
+  --cream: #f5f6fa;
   --muted: #64717c;
   --border: #e5e9eb;
   --green: #188b6b;
@@ -239,90 +239,6 @@ h1 em {
 .updated {
   font-size: 11px;
   color: #b9cbd7;
-}
-
-.hero-art {
-  background: radial-gradient(
-    circle at 50% 50%,
-    #245373 0%,
-    #103652 56%,
-    #0b2b45 100%
-  );
-  position: relative;
-  overflow: hidden;
-}
-
-.ring {
-  width: 390px;
-  height: 390px;
-  border: 1px dashed #56748a;
-  border-radius: 50%;
-  position: absolute;
-  left: 14%;
-  top: -2%;
-}
-
-.ring2 {
-  width: 280px;
-  height: 280px;
-  left: 26%;
-  top: 14%;
-  border-style: solid;
-  opacity: .5;
-}
-
-.parking-sign {
-  position: absolute;
-  top: 22%;
-  left: 34%;
-  background: var(--orange);
-  border: 8px solid #ffae72;
-  box-shadow: 0 24px 50px #001a2b7a;
-  transform: rotate(-10deg);
-  width: 145px;
-  height: 145px;
-  border-radius: 24px;
-  text-align: center;
-  line-height: 125px;
-  font: 900 112px 'Trebuchet MS', Arial, sans-serif;
-}
-
-.road {
-  position: absolute;
-  transform: rotate(-28deg);
-  border-top: 3px dashed #42647a;
-  width: 650px;
-  left: -80px;
-}
-
-.road1 {
-  top: 82%;
-}
-
-.road2 {
-  top: 102%;
-}
-
-.car {
-  position: absolute;
-  right: 19%;
-  bottom: 15%;
-  font-size: 52px;
-  filter: drop-shadow(0 12px 8px #001a29);
-}
-
-.floating {
-  position: absolute;
-  top: 17%;
-  right: 5%;
-  background: #fff;
-  color: var(--navy);
-  border-radius: 8px;
-  padding: 10px 12px;
-  font-weight: 900;
-  font-size: 10px;
-  transform: rotate(8deg);
-  box-shadow: 0 10px 30px #001a2980;
 }
 
 .notice {
@@ -1046,3 +962,89 @@ select:focus-visible {
 .breakdown th, .breakdown td {padding:10px 5px; border-bottom:1px solid #e5e9eb; text-align:right;}
 .breakdown th:first-child, .breakdown td:first-child {text-align:left;}
 button:disabled {opacity:.6; cursor:wait;}
+
+/* ROWDY PARKSMART BRAND AND FULL-WIDTH BANNER
+   The hero is outside <main>, so it reaches both page edges without 100vw
+   overflow tricks. Its inner content aligns with the centered dashboard. */
+body { color: #19234a; }
+.topbar {
+  height: auto;
+  min-height: 94px;
+  background: var(--navy);
+  border-bottom: 1px solid #ffffff24;
+  padding: 16px max(24px, calc((100% - 1176px) / 2));
+}
+.brand-logo { width: 60px; height: 60px; object-fit: contain; flex: 0 0 auto; }
+.topbar .brand strong, footer .brand strong { color: white; font-size: 23px; letter-spacing: -.7px; }
+.topbar .brand small, footer .brand small { color: #ccd2e7; }
+.topbar nav { color: white; }
+.topbar nav a { padding: 8px 0; }
+.topbar nav a:hover { color: var(--orange); }
+.topbar .outline { background: transparent; color: white; border-color: #ffffff66; }
+.topbar .outline:hover { background: #ffffff12; border-color: var(--orange); }
+.live { color: var(--navy); background: #fff0e5; }
+.live i { background: var(--orange); }
+.hero {
+  width: 100%; margin: 0; min-height: 0; border-radius: 0;
+  background: var(--navy); border-bottom: 6px solid var(--orange);
+  display: block; overflow: hidden;
+}
+.hero > .hero-inner {
+  max-width: 1220px; width: 100%; margin: 0 auto;
+  padding: 42px 22px 48px;
+  display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  align-items: center; gap: 40px;
+}
+.hero-copy { padding: 20px 0; min-width: 0; }
+.hero h1 { font-size: clamp(44px, 5.2vw, 76px); line-height: 1.05; margin: 20px 0; }
+.hero h1 em, .hero .eyebrow, .star { color: var(--orange); }
+.hero p { color: #d1d7eb; max-width: 500px; font-size: 16px; }
+.hero-logo-panel { display: flex; justify-content: center; align-items: center; min-width: 0; }
+.hero-logo { display: block; width: min(100%, 440px); height: auto; object-fit: contain; }
+.primary { background: var(--orange); color: var(--navy); }
+.primary:hover { background: #ff934f; }
+.updated { color: #d1d7eb; line-height: 1.6; }
+.connection-status { background: #eef1fa; color: #3c4870; border-radius: 8px; padding: 10px 14px; margin: 24px 0 0; font-size: 12px; }
+.notice { background: #fff3e9; color: #6d391c; border: 1px solid #ffd3b6; }
+.overline { color: #ab4400; }
+.stat-icon.orange { color: #ab4400; background: #fff0e5; }
+.stat-icon.blue, .stat-icon.purple { color: var(--navy); background: #eef1fa; }
+.stat-icon.green { color: #ab4400; background: #fff0e5; }
+.card-bottom b { color: #ab4400; }
+.lot-icon { background: #eef1fa; color: var(--navy); }
+.chip.active { background: var(--navy); border-color: var(--navy); }
+.lot-card:hover { border-color: var(--orange); }
+.demo-tag { color: #ab4400; background: #fff0e5; }
+.steps b { color: #ab4400; }
+footer { background: var(--navy); color: #d1d7eb; border-top: 4px solid var(--orange); }
+footer .brand-logo { width: 52px; height: 52px; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline-color: var(--orange); }
+@media (max-width: 1000px) {
+  .topbar { flex-wrap: wrap; gap: 12px 24px; }
+  .topbar nav { display: flex; gap: 22px; }
+  .hero > .hero-inner { gap: 16px; }
+  .topbar .brand strong { font-size: 21px; }
+}
+@media (max-width: 680px) {
+  .topbar { padding: 14px 20px; }
+  .topbar .brand { gap: 8px; }
+  .topbar .brand-logo { width: 46px; height: 46px; }
+  .topbar .brand strong { font-size: 20px; }
+  .topbar .brand small { font-size: 8px; letter-spacing: 1px; }
+  .topbar nav { display: flex; width: 100%; order: 3; justify-content: space-between; font-size: 12px; gap: 10px; }
+  .header-right { margin-left: auto; gap: 8px; }
+  .header-right .live { display: none; }
+  .header-right .outline { display: inline-flex; padding: 10px 12px; }
+  .hero > .hero-inner { grid-template-columns: 1fr; padding: 32px 22px 28px; gap: 4px; }
+  .hero-copy { padding: 0; }
+  .hero h1 { font-size: clamp(42px, 9vw, 60px); }
+  .hero p { font-size: 14px; }
+  .hero-logo { width: min(100%, 260px); }
+  .hero-logo-panel { padding-top: 12px; }
+  .hero-actions { gap: 14px; }
+  footer .brand strong { font-size: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0s !important; }
+}
