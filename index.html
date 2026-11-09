@@ -1,35 +1,333 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#092b47">
 
-<head>
-    <meta charset="UTF-8">
-    <title> Rowdy ParkSmart: A UTSA Parking Tracker </title>
+    <title>ParkRunner | UTSA Parking Availability</title>
+
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+  </head>
 
-
-</head>
-
-<body>
-    <h1> Rowdy ParkSmart </h1>
-    <p> Find available parking spots on campus! </p>
-    <h2> Parking Lots</h2>
-    
+  <body>
+    <noscript>Please enable JavaScript to display simulated parking availability.</noscript>
+    <p id="connectionStatus" role="status" class="connection-status">Local parking simulation · No server required</p>
     <header class="topbar">
+      <div class="brand">
+        <div class="mark">P<span>↗</span></div>
 
-    <a class="brand" href="#top">
-        <span class="brand-icon">P</span>
-        <span>Rowdy <b>ParkSmart</b></span>
-    </a>
+        <div>
+          <strong>ParkRunner</strong>
+          <small>UTSA MAIN CAMPUS</small>
+        </div>
+      </div>
 
-    <nav>
-        <a href="#lots">Parking Lots</a>
-        <a href="#campus-map">Campus Map</a>
-        <a href="#how">How It Works</a>
-    </nav>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#lots">Parking lots</a>
+        <a href="#how-it-works">How it works</a>
+      </nav>
 
-</header>
+      <div class="header-right">
+        <span class="live">
+          <i></i> Demo mode
+        </span>
 
-</body>
+        <button id="refreshBtn" class="outline">↻ Refresh</button>
+      </div>
+    </header>
 
+    <main>
+      <section class="hero" id="overview">
+        <div>
+          <div class="eyebrow">
+            ROADRUNNERS PARK SMARTER
+            <span class="star">✦</span>
+          </div>
+
+          <h1>
+            Find your spot.<br>
+            <em>Get to class.</em>
+          </h1>
+
+          <p>
+            Explore estimated parking availability across UTSA's Main Campus,
+            all in one place. Waste less time. Find your nest!
+          </p>
+
+          <div class="hero-actions">
+            <a class="primary" href="#lots">
+              Explore parking lots <span>↗</span>
+            </a>
+
+            <span class="updated" id="updated">● Updated just now</span>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="ring ring1"></div>
+          <div class="ring ring2"></div>
+          <div class="parking-sign">P</div>
+          <div class="road road1"></div>
+          <div class="road road2"></div>
+          <div class="car">🚙</div>
+          <div class="floating">✦ SPOTS AHEAD</div>
+        </div>
+      </section>
+
+      <section class="notice" role="status">
+        <span>ⓘ</span>
+
+        <div>
+          <strong>Prototype with simulated data</strong> — Spot counts and
+          capacities are illustrative, not official UTSA occupancy
+          measurements. Use posted signs and your permit to park legally.
+        </div>
+      </section>
+
+      <section class="dashboard">
+        <div class="section-intro">
+          <div>
+            <div class="overline">CAMPUS AT A GLANCE</div>
+            <h2>Parking overview</h2>
+          </div>
+
+          <p>
+            Live-style estimates · Auto-simulate every
+            <span id="intervalLabel">15</span> seconds
+          </p>
+        </div>
+
+        <div class="stats">
+          <article class="stat">
+            <div class="stat-top">
+              Available spots
+              <span class="stat-icon orange">↗</span>
+            </div>
+
+            <div class="stat-number" id="totalAvailable">—</div>
+            <div class="stat-sub">Across tracked locations</div>
+          </article>
+
+          <article class="stat">
+            <div class="stat-top">
+              Total capacity
+              <span class="stat-icon blue">▦</span>
+            </div>
+
+            <div class="stat-number" id="totalCapacity">—</div>
+            <div class="stat-sub">Illustrative parking spaces</div>
+          </article>
+
+          <article class="stat">
+            <div class="stat-top">
+              Overall availability
+              <span class="stat-icon green">◉</span>
+            </div>
+
+            <div class="stat-number" id="percentAvailable">—</div>
+
+            <div class="stat-sub">
+              <span id="overallStatus">Calculating…</span>
+            </div>
+          </article>
+
+          <article class="stat">
+            <div class="stat-top">
+              Lots tracked
+              <span class="stat-icon purple">⌖</span>
+            </div>
+
+            <div class="stat-number" id="lotCount">—</div>
+            <div class="stat-sub">Main Campus locations</div>
+          </article>
+        </div>
+      </section>
+
+      <section id="lots" class="lot-section">
+        <div class="section-intro">
+          <div>
+            <div class="overline">FIND YOUR PARKING</div>
+            <h2>Explore parking lots</h2>
+          </div>
+
+          <div class="view-note">
+            Select a lot to view details <span>↘</span>
+          </div>
+        </div>
+
+        <div class="controls">
+          <div class="search-wrap">
+            <span>⌕</span>
+
+            <input
+              id="search"
+              type="search"
+              placeholder="Search parking lots (e.g. Brackenridge)..."
+              aria-label="Search parking lots"
+            >
+          </div>
+
+          <select id="typeFilter" aria-label="Filter by permit type">
+            <option value="all">All parking types</option>
+            <option value="Commuter">Commuter</option>
+            <option value="Resident">Resident</option>
+            <option value="Garage">Garage</option>
+          </select>
+
+          <select id="sort" aria-label="Sort parking lots">
+            <option value="available">Most spots available</option>
+            <option value="percent">Highest % available</option>
+            <option value="name">Name A–Z</option>
+          </select>
+        </div>
+
+        <div class="filters">
+          <button class="chip active" data-status="all">All lots</button>
+
+          <button class="chip" data-status="available">
+            <span class="dot good"></span> Available
+          </button>
+
+          <button class="chip" data-status="limited">
+            <span class="dot caution"></span> Filling up
+          </button>
+
+          <button class="chip" data-status="full">
+            <span class="dot bad"></span> Nearly full
+          </button>
+
+          <span id="resultCount" class="count"></span>
+        </div>
+
+        <div id="lotGrid" class="lot-grid"></div>
+
+        <p class="empty" id="noResults" hidden>
+          No lots match your filters. Try changing your search.
+        </p>
+      </section>
+
+      <section class="bottom" id="how-it-works">
+        <div class="explainer">
+          <div class="overline">THE BIG PICTURE</div>
+          <h2>How it works</h2>
+
+          <p>
+            This prototype uses a simulated occupancy feed. Every 15 seconds,
+            it adjusts illustrative parking counts to demonstrate how a
+            real-time dashboard could behave.
+          </p>
+
+          <div class="steps">
+            <div>
+              <b>01</b>
+
+              <span>
+                <strong>Collect</strong>
+
+                <small>
+                  In production: counters, sensors, cameras, or an authorized
+                  UTSA feed.
+                </small>
+              </span>
+            </div>
+
+            <div>
+              <b>02</b>
+
+              <span>
+                <strong>Calculate</strong>
+                <small>Available spots = lot capacity − occupied spots.</small>
+              </span>
+            </div>
+
+            <div>
+              <b>03</b>
+
+              <span>
+                <strong>Display</strong>
+
+                <small>
+                  Keep spot counts, progress bars, and availability statuses
+                  updated.
+                </small>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-panel">
+          <div class="demo-head">
+            <div>
+              <div class="overline">PROTOTYPE CONTROLS</div>
+              <h3>Test the dashboard</h3>
+            </div>
+
+            <span class="demo-tag">DEMO</span>
+          </div>
+
+          <p>
+            Change the simulation settings to see how the site handles updates.
+          </p>
+
+          <label class="switch-row">
+            <span>
+              <strong>Automatic updates</strong>
+              <small>Simulate occupancy changes every 15 seconds</small>
+            </span>
+
+            <input id="autoUpdate" type="checkbox" checked>
+            <span class="switch-ui"></span>
+          </label>
+
+          <div class="demo-actions">
+            <button id="simulateBtn" class="primary">
+              Simulate new data ↻
+            </button>
+
+            <button id="resetBtn" class="outline light">Reset demo</button>
+          </div>
+
+          <div class="demo-foot">
+            For a real launch, replace the mock feed in
+            <code>script.js</code> with an authorized data API.
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="brand footer-brand">
+        <div class="mark">P<span>↗</span></div>
+
+        <div>
+          <strong>ParkRunner</strong>
+          <small>STUDENT PROJECT PROTOTYPE</small>
+        </div>
+      </div>
+
+      <div>
+        Made for smarter parking at UTSA · Unofficial student demo
+      </div>
+
+      <a
+        href="https://www.utsa.edu/campusservices/parking/main-campus-parking.html"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Official UTSA parking information ↗
+      </a>
+    </footer>
+
+    <dialog id="lotDialog">
+      <button class="close" id="closeDialog" aria-label="Close details">
+        ×
+      </button>
+
+      <div id="dialogContent"></div>
+    </dialog>
+
+    <script src="script.js"></script>
+  </body>
 </html>
